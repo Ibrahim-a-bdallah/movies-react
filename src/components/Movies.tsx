@@ -1,51 +1,42 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import type { SimpleMovieData } from "../types/data.type";
 import CardComponent from "./Card";
+// import { Item } from "./styled";
+import ResponsiveGrid from "./Grid";
+import { useMovie } from "../hooks/useMovie";
+import { motion } from "framer-motion";
 
-const getMovies = async (): Promise<SimpleMovieData[]> => {
-  const res = await axios.get(
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-    {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
-      },
-    }
-  );
-
-  const movies = res.data.results.map((movie: SimpleMovieData) => ({
-    id: movie.id,
-    title: movie.title,
-    poster_path: movie.poster_path,
-    overview: movie.overview,
-  }));
-  return movies;
+type Props = {
+  searchTerm: string;
 };
 
-const Movies = () => {
-  // const { results } = getMovies;
-  const { data } = useQuery({
-    queryKey: ["nowPlayingMovies"],
-    queryFn: getMovies,
-  });
-  console.log(data?.map((e) => e));
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
+const Movies = ({ searchTerm }: Props) => {
+  const { data, isLoading } = useMovie(searchTerm);
+
+  if (isLoading) return <p>Loading...</p>;
+
+  const products =
+    data &&
+    data.map((movie) => {
+      return (
+        <motion.div key={movie.id} variants={item}>
+          {/* <Item> */}
+          <CardComponent
+            title={movie.title}
+            img={movie.poster_path}
+            overviwe={movie.overview}
+          />
+          {/* </Item> */}
+        </motion.div>
+      );
+    });
+
   return (
     <div>
-      <ul>
-        {data &&
-          data?.map((movie) => {
-            return (
-              <li key={movie.id}>
-                <CardComponent
-                  title={movie.title}
-                  img={movie.poster_path}
-                  overviwe={movie.overview}
-                />
-              </li>
-            );
-          })}
-      </ul>
+      <ResponsiveGrid>{products}</ResponsiveGrid>
     </div>
   );
 };

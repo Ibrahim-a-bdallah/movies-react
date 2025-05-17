@@ -1,0 +1,50 @@
+.container_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.app {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.input {
+    outline: none;
+    border: none;
+}
+
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 22px;
+    padding: 10px;
+}
+
+.grid:first-child {
+    width: 100%;
+
+}
+
+.card p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 100%;
+    height: 120px;
+    width: 250px;
+}
+
+
+
+
+@media (maxwidth:400px) {
+    .container_header {
+        padding: 5px 10px !important;
+    }
+}

@@ -12,7 +12,10 @@ type TProps = {
 
 const CardComponent = ({ img, title, overviwe }: TProps) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      className="card"
+      sx={{ maxWidth: 345, height: "330px", overflow: "hidden" }}
+    >
       <CardActionArea>
         <CardMedia
           component="img"
@@ -20,7 +23,7 @@ const CardComponent = ({ img, title, overviwe }: TProps) => {
           image={`https://image.tmdb.org/t/p/original${img}`}
           alt={title}
         />
-        <CardContent>
+        <CardContent sx={{ height: "100%" }}>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
