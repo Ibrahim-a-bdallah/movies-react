@@ -38,7 +38,7 @@ const ModalComp = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box className="modal" sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {title}
           </Typography>
