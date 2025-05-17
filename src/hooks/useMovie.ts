@@ -16,15 +16,15 @@ export const useMovie = (searchTerm: string) => {
       id: movie.id,
       title: movie.title,
       poster_path: movie.poster_path,
-      overview: movie.overview,
+      release_date: movie.release_date,
     }));
   };
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["searchMovies", searchTerm],
     queryFn: getMovies,
     enabled: !!searchTerm,
   });
 
-  return { data, isLoading };
+  return { data, isLoading, error };
 };
