@@ -20,7 +20,7 @@ const getMovies = async (): Promise<SimpleMovieData[]> => {
 const Movies = () => {
   // const { results } = getMovies;
   const { data } = useQuery({
-    queryKey: ["movies"],
+    queryKey: ["4f9d55420d6bd2c36127a9a02486e87a"],
     queryFn: getMovies,
   });
   console.log(data?.map((e) => e));
