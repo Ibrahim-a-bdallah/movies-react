@@ -18,7 +18,7 @@ const CardComponent = ({ img, title, overviwe }: TProps) => {
           component="img"
           height="140"
           image={`https://image.tmdb.org/t/p/original${img}`}
-          alt="green iguana"
+          alt={title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

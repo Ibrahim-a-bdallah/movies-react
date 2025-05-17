@@ -5,7 +5,13 @@ import CardComponent from "./Card";
 
 const getMovies = async (): Promise<SimpleMovieData[]> => {
   const res = await axios.get(
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1"
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+      },
+    }
   );
 
   const movies = res.data.results.map((movie: SimpleMovieData) => ({
@@ -30,7 +36,7 @@ const Movies = () => {
         {data &&
           data?.map((movie) => {
             return (
-              <li id={movie.id}>
+              <li key={movie.id}>
                 <CardComponent
                   title={movie.title}
                   img={movie.poster_path}
