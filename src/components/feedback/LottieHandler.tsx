@@ -30,7 +30,7 @@ const LottieHandler = ({ message, type, styled, cssStyle }: TProps) => {
         animationData={lottieType[type]}
         style={cssStyle ?? { width: "300px", margin: "10px auto" }}
       />
-      <p>{message}</p>;
+      <p style={{ textAlign: "center" }}>{message}</p>
     </div>
   );
 };

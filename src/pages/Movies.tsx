@@ -1,8 +1,8 @@
-import CardComponent from "./Card";
-import ResponsiveGrid from "./Grid";
+import CardComponent from "../components/Card";
+import ResponsiveGrid from "../components/Grid";
 import { useMovie } from "../hooks/useMovie";
 import { motion } from "framer-motion";
-import LottieHandler from "./feedback/LottieHandler";
+import LottieHandler from "../components/feedback/LottieHandler";
 
 type Props = {
   searchTerm: string;
@@ -15,7 +15,7 @@ const item = {
 
 const Movies = ({ searchTerm }: Props) => {
   const { data, isLoading, error } = useMovie(searchTerm);
-  console.log(data?.length);
+
   const products =
     data &&
     data.map((movie) => {
@@ -26,6 +26,8 @@ const Movies = ({ searchTerm }: Props) => {
             title={movie.title}
             img={movie.poster_path}
             release_date={movie.release_date}
+            overview={movie.overview}
+            vote_average={movie.vote_average}
           />
           {/* </Item> */}
         </motion.div>
@@ -38,7 +40,7 @@ const Movies = ({ searchTerm }: Props) => {
       {isLoading ? (
         <LottieHandler type={"loading"} styled={"margin:10px auto"} />
       ) : !data?.length ? (
-        <LottieHandler type={"empty"} />
+        <LottieHandler type={"empty"} message="NOT FOUND MOVIE" />
       ) : (
         <ResponsiveGrid>{products}</ResponsiveGrid>
       )}

@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Movies from "./components/Movies";
+import Movies from "./pages/Movies";
 import Header from "./components/Header";
 import { useState } from "react";
 
